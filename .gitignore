@@ -186,5 +186,6 @@ $RECYCLE.BIN/
 .env
 *.env
 
+meetings
 
 # End of https://www.toptal.com/developers/gitignore/api/linux,macos,windows,node
