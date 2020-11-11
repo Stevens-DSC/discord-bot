@@ -1,6 +1,6 @@
 const { channels, roles, guilds } = require('../constants')
 
-const { assignGroupsToMembers } = require('./listeners/mentor/assign.js');
+const { assignGroupsToMembers } = require('./mentor/assign.js');
 
 async function assignRole(member,role) {
     await member.roles.add(role);   
