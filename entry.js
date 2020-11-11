@@ -22,11 +22,11 @@ client.once('ready', () => {
     ready = true
 })
 
-// require('./listeners/namechange.js')(client)
-// require('./listeners/role-assign.js')(client)
+require('./listeners/namechange.js')(client)
+require('./listeners/role-assign.js')(client)
 require('./listeners/mentor/create.js')(client)
 require('./listeners/mentor/assign.js')(client)
-// require('./listeners/signin.js')(client)
+require('./listeners/signin.js')(client)
 
 client.login(TOKEN)
 
