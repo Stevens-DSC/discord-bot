@@ -22,9 +22,11 @@ client.once('ready', () => {
     ready = true
 })
 
-require('./listeners/namechange.js')(client)
-require('./listeners/role-assign.js')(client)
-require('./listeners/signin.js')(client)
+// require('./listeners/namechange.js')(client)
+// require('./listeners/role-assign.js')(client)
+require('./listeners/mentor/create.js')(client)
+require('./listeners/mentor/assign.js')(client)
+// require('./listeners/signin.js')(client)
 
 client.login(TOKEN)
 
@@ -32,7 +34,7 @@ const fs = require('fs')
 const path = require('path')
 
 app.get('/', (req, res) => { res.send("Stevens DSC")} )
-app.get('/meeting/:year/:month/:day/signin.csv', (req, res) => { 
+app.get('/meeting/:year/:month/:day/signin.csv', (req, res) => {
     try {
         const { year, month, day } = req.params
         const filename = parseInt(year) + '-' + parseInt(month) + '-' + parseInt(day) + '.csv'
@@ -43,7 +45,7 @@ app.get('/meeting/:year/:month/:day/signin.csv', (req, res) => {
 
 } )
 
-app.get('/meeting/:year/:month/:day/signin.txt', (req, res) => { 
+app.get('/meeting/:year/:month/:day/signin.txt', (req, res) => {
     try {
         const { year, month, day } = req.params
         const filename = parseInt(year) + '-' + parseInt(month) + '-' + parseInt(day) + '.csv'
@@ -56,7 +58,7 @@ app.get('/meeting/:year/:month/:day/signin.txt', (req, res) => {
 
 } )
 
-app.get('/meeting/today/signin.csv', (req, res) => { 
+app.get('/meeting/today/signin.csv', (req, res) => {
     const dateObj = new Date()
     const month = dateObj.getUTCMonth() + 1 //months from 1-12
     const day = dateObj.getUTCDate()
@@ -66,7 +68,7 @@ app.get('/meeting/today/signin.csv', (req, res) => {
 
 } )
 
-app.get('/meeting/today/signin.txt', (req, res) => { 
+app.get('/meeting/today/signin.txt', (req, res) => {
     const dateObj = new Date()
     const month = dateObj.getUTCMonth() + 1 //months from 1-12
     const day = dateObj.getUTCDate()

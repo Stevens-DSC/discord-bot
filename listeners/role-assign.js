@@ -1,5 +1,7 @@
 const { channels, roles, guilds } = require('../constants')
 
+const { assignGroupsToMembers } = require('./listeners/mentor/assign.js');
+
 async function assignRole(member,role) {
     await member.roles.add(role);   
 }
@@ -23,7 +25,8 @@ module.exports = function(client) {
                     await assignRole(member, roles.tech);
                     await removeRole(member, roles.business);
                     await removeRole(member, roles.design);      
-                    await assignRole(member, roles.member);    
+                    await assignRole(member, roles.member);   
+                    await assignGroupsToMembers(member, message.channel.guild) 
                     member.send("We've assigned Tech team as your primary team! If your Discord account doesn't use your real name, feel free to type it below and I'll assign you a nickname.")  
                     return;
         
@@ -34,6 +37,7 @@ module.exports = function(client) {
                     await assignRole(member, roles.business);
                     await removeRole(member, roles.design);
                     await assignRole(member, roles.member);
+                    await assignGroupsToMembers(member, message.channel.guild) 
                     member.send("We've assigned Business team as your primary team! If your Discord account doesn't use your real name, feel free to type it below and I'll assign you a nickname.")  
         
                     return;
@@ -44,6 +48,7 @@ module.exports = function(client) {
                     await removeRole(member, roles.business);
                     await assignRole(member, roles.design);  
                     await assignRole(member, roles.member);
+                    await assignGroupsToMembers(member, message.channel.guild) 
                     member.send("We've assigned Design team as your primary team! If your Discord account doesn't use your real name, feel free to type it below and I'll assign you a nickname.")  
         
                     return;
@@ -57,4 +62,6 @@ module.exports = function(client) {
         }
 
     })
+
+    
 }
